@@ -14,10 +14,10 @@ public class RouteConfig {
         return builder.routes()
                 .route("address-service", r -> r.path("/address-service/**")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("http://localhost:8090/address-service"))
+                        .uri("lb://address-service/address-service"))
                 .route("person-service", r -> r.path("/person-service/**")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("http://localhost:8091/person-service"))
+                        .uri("lb://person-service/person-service"))
                 .build();
     }
 }
