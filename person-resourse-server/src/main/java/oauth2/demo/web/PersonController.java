@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/person-service")
+@RequestMapping("/api/person")
 public class PersonController {
 
-    @GetMapping("/person")
+    @GetMapping
     public PersonDto getRandomPersonInfo() {
         Name personName = new Faker().name();
         return new PersonDto(personName);

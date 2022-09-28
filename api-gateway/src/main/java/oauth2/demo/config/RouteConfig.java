@@ -12,12 +12,16 @@ public class RouteConfig {
     @Bean
     public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("address-service", r -> r.path("/address-service/**")
+                .route("address-service", r -> r.path("/api/address", "/api/address/**")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("lb://address-service/address-service"))
-                .route("person-service", r -> r.path("/person-service/**")
+                        .uri("lb://address-service/api"))
+                .route("person-service", r -> r.path("/api/person", "/api/person/**")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("lb://person-service/person-service"))
+                        .uri("lb://person-service/api"))
+                .route("pc-name", r -> r.path("/")
+                        .filters(f -> f.setHostHeader("localhost"))
+                        .uri("lb://localhost"))
                 .build();
     }
 }
+
