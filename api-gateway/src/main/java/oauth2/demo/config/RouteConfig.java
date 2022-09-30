@@ -12,12 +12,22 @@ public class RouteConfig {
     @Bean
     public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("address-service", r -> r.path("/address-service/**")
+                .route("address-service", r -> r.path("/api/address", "/api/address/**")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("http://localhost:8090/address-service"))
-                .route("person-service", r -> r.path("/person-service/**")
+                        .uri("lb://address-service/api")
+                )
+                .route("person-service", r -> r.path("/api/person", "/api/person/**")
                         .filters(GatewayFilterSpec::tokenRelay)
-                        .uri("http://localhost:8091/person-service"))
+                        .uri("lb://person-service/api")
+                )
+                .route("discovery-service", r -> r.path("/eureka")
+                        .filters(filter -> filter.setPath("/"))
+                        .uri("http://localhost:8761")
+                )
+                .route("discovery-service", r -> r.path("/eureka/**")
+                        .uri("http://localhost:8761")
+                )
                 .build();
     }
 }
+
