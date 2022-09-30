@@ -14,9 +14,14 @@ public class SecurityConfig {
 
     @Bean
     SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        return http.authorizeExchange(exchange -> exchange.anyExchange().authenticated())
+        //@formatter:off
+        return http.authorizeExchange(exchange ->
+                exchange.pathMatchers("/eureka/**").permitAll()
+                        .anyExchange().authenticated()
+                )
                 .oauth2Login(withDefaults())
                 .csrf().disable()
                 .build();
+        //@formatter:on
     }
 }
