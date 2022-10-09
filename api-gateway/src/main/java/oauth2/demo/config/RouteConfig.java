@@ -27,6 +27,10 @@ public class RouteConfig {
                 .route("discovery-service", r -> r.path("/eureka/**")
                         .uri("http://localhost:8761")
                 )
+                .route("config-service", r -> r.path("/config")
+                        .filters(filter -> filter.setPath("/"))
+                        .uri("http://localhost:8888")
+                )
                 .build();
     }
 }
