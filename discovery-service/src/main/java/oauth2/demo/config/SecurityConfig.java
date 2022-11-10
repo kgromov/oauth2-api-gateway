@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final EurekaSettings eurekaSettings;
 
-    @Override
+  /*  @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         UserDetails eurekaUser = User.builder()
                 .username(eurekaSettings.getUsername())
@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
                 .withUser(eurekaUser);
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

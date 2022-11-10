@@ -9,6 +9,10 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9000/auth/realms/oauth-demo
+    user:
+      name: eureka
+      password: password
+      roles: USER,EUREKA
   zipkin:
     base-url: http://localhost:9411
   sleuth:
