@@ -1,0 +1,6 @@
+spring:
+  security:
+    user:
+      name: ${EUREKA_SETTINGS_USERNAME:eureka}
+      password: ${EUREKA_SETTINGS_PASSWORD:password}
+      roles: ${EUREKA_SETTINGS_ROLES:USER,EUREKA}
